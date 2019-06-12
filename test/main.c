@@ -21,15 +21,15 @@ CTEST(inputcheck_test, correct_input)
  	ASSERT_STR(exp, ch);
 }
 
-CTEST(inputcheck_test, incorrect_input_digit)
+CTEST(inputcheck_test, correct_input_2)
 {
 	//Given
-	char** ch = "as1df";
+	char ch[] = "as-df";
 
 
 	//When
- 	format(ch[0]);
- 	const char exp[] = "as";
+ 	format(ch);
+ 	const char exp[] = "as-df";
 
  	//Then
  	ASSERT_STR(exp, ch);
@@ -40,12 +40,12 @@ CTEST(inputcheck_test, incorrect_input_sym)
 	//Given
 	char ch[] = "a@sd/f";
 
-	format(ch);
 
 	//When
  	format(ch);
- 	const char exp[] = "a";
+ 	const char exp[] = "a sd f";
 
  	//Then
  	ASSERT_STR(exp, ch);
 }
+
