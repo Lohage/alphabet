@@ -115,22 +115,22 @@ void format(char* buf)
         buf[i] = tolower(buf[i]);
     }
     char copy[len];
-    size_t j = 0;
+    
     size_t i;
     for (i = 0; i < len; i++) {
-      if ((buf[i] < 'a') || (buf[i] > 'z')) {
-        if ((buf[i] == '-') && (i != 0)) {
-          if (((buf[i - 1] >= 'a') && (buf[i - 1] <= 'z')) &&
-              ((buf[i + 1] >= 'a') && (buf[i + 1] <= 'z'))) {
-            copy[i] = '-';
-          }
+        if ((buf[i] < 'a') || (buf[i] > 'z')) {
+            if ((buf[i] == '-') && (i != 0)) {
+                if (((buf[i - 1] >= 'a') && (buf[i - 1] <= 'z')) &&
+                    ((buf[i + 1] >= 'a') && (buf[i + 1] <= 'z'))) {
+                  copy[i] = '-';
+                }
+            } else {
+                copy[i] = ' ';
+              }
         } else {
-          copy[i] = ' ';
+            copy[i] = buf[i];
+          }
         }
-      } else {
-        copy[i] = buf[i];
-      }
-    }
     copy[i] = '\0';
     strcpy(buf, copy);
 }
