@@ -1,4 +1,4 @@
-.PHONY: all clean install uninstall
+.PHONY: all test clean install uninstall
 
 all: ./bin
 
@@ -11,7 +11,19 @@ all: ./bin
 ./build/src/functions.o: ./src/functions.c
 	gcc -Wall -c ./src/functions.c -o ./build/src/functions.o
 
+test: bin/alphabet_test
+
+bin/alphabet_test: build/test/main.o build/test/functions.o
+	gcc -Wall  build/test/main.o build/test/functions.o -o bin/alphabet_test
+
+build/test/main.o: test/main.c
+	gcc -Wall -c -I thirdparty -I src test/main.c -o build/test/main.o
+
+build/test/functions.o: src/functions.c src/functions.h
+	gcc -Wall -c -I thirdparty -I src src/functions.c -o build/test/functions.o
+
 clean:
+	rm ./bin/alphabet ./build/src/*.o
 	rm ./bin/alphabet ./build/src/*.o
 
 install: 
