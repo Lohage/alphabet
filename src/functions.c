@@ -116,12 +116,21 @@ void format(char* buf)
     }
     char copy[len];
     size_t j = 0;
-    for (size_t i = 0; i < len; i++) {
-        if (((buf[i] >= 'a') && (buf[i] <= 'z')) || (buf[i] == ' ')) {
-            copy[j] = buf[i];
-            j++;
+    size_t i;
+    for (i = 0; i < len; i++) {
+      if ((buf[i] < 'a') || (buf[i] > 'z')) {
+        if ((buf[i] == '-') && (i != 0)) {
+          if (((buf[i - 1] >= 'a') && (buf[i - 1] <= 'z')) &&
+              ((buf[i + 1] >= 'a') && (buf[i + 1] <= 'z'))) {
+            copy[i] = '-';
+          }
+        } else {
+          copy[i] = ' ';
         }
+      } else {
+        copy[i] = buf[i];
+      }
     }
-    copy[j] = '\0';
+    copy[i] = '\0';
     strcpy(buf, copy);
 }
