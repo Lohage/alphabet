@@ -35,6 +35,21 @@ CTEST(inputcheck_test, correct_input_2)
  	ASSERT_STR(exp, ch);
 }
 
+CTEST(inputcheck_test, correct_input_3)
+{
+	//Given
+	char ch[] = "aSDf";
+
+
+	//When
+ 	format(ch);
+ 	const char exp[] = "asdf";
+
+ 	//Then
+ 	ASSERT_STR(exp, ch);
+}
+
+
 CTEST(inputcheck_test, incorrect_input_sym)
 {
 	//Given
@@ -49,3 +64,16 @@ CTEST(inputcheck_test, incorrect_input_sym)
  	ASSERT_STR(exp, ch);
 }
 
+CTEST(inputcheck_test, incorrect_input_digit)
+{
+	//Given
+	char ch[] = "a3sd4f";
+
+
+	//When
+ 	format(ch);
+ 	const char exp[] = "a sd f";
+
+ 	//Then
+ 	ASSERT_STR(exp, ch);
+}
