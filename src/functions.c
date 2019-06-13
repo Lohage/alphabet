@@ -34,7 +34,7 @@
 void getDataFromFile(Words *w) {
   // char buffer[SIZESTD];
   FILE *fp;
-  fp = fopen("txt.txt", "r");
+  fp = fopen("./bin/txt.txt", "r");
   if (fp == NULL) {
     printf("Error: can't open file\n");
     exit(2);
